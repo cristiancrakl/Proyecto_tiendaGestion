@@ -52,13 +52,13 @@ public class PanelAdmin extends javax.swing.JFrame {
         
         btnGenerarReporte = new javax.swing.JButton("Generar Reporte");
 
-        // Initialize Tables
+        
         initializeCitasTable();
         initializeHorariosTable();
         initializeInventarioTable();
         initializeVentasTable();
 
-        // Appointments Panel Layout
+        
         panelCitas.setLayout(new BorderLayout());
         panelCitas.add(jScrollPaneCitas, BorderLayout.CENTER);
         
@@ -67,7 +67,7 @@ public class PanelAdmin extends javax.swing.JFrame {
         panelBotonesCitas.add(btnEliminarCita);
         panelCitas.add(panelBotonesCitas, BorderLayout.SOUTH);
 
-        // Horarios Panel Layout
+        
         panelHorarios.setLayout(new BorderLayout());
         panelHorarios.add(jScrollPaneHorarios, BorderLayout.CENTER);
         
@@ -76,7 +76,7 @@ public class PanelAdmin extends javax.swing.JFrame {
         panelBotonesHorarios.add(btnEliminarHorario);
         panelHorarios.add(panelBotonesHorarios, BorderLayout.SOUTH);
 
-        // Inventory Panel Layout
+        
         panelInventario.setLayout(new BorderLayout());
         panelInventario.add(jScrollPaneInventario, BorderLayout.CENTER);
         
@@ -86,7 +86,7 @@ public class PanelAdmin extends javax.swing.JFrame {
         panelBotonesInventario.add(btnEliminarProducto);
         panelInventario.add(panelBotonesInventario, BorderLayout.SOUTH);
 
-        // Sales Panel Layout
+       
         panelVentas.setLayout(new BorderLayout());
         panelVentas.add(jScrollPaneVentas, BorderLayout.CENTER);
         
@@ -94,7 +94,7 @@ public class PanelAdmin extends javax.swing.JFrame {
         panelBotonesVentas.add(btnGenerarReporte);
         panelVentas.add(panelBotonesVentas, BorderLayout.SOUTH);
 
-        // Add Panels to Tabbed Pane
+        
         jTabbedPane1.addTab("Citas", panelCitas);
         jTabbedPane1.addTab("Horarios", panelHorarios);
         jTabbedPane1.addTab("Inventario", panelInventario);
@@ -106,6 +106,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     }
 
     private void initializeCitasTable() {
+        //traer datos de las citas  agendadas por los usuarios desde la BD, estos son datos de prueba
         String[] columnNames = {"ID", "Fecha", "Hora", "Cliente", "Servicio"};
         Object[][] data = {
             {"1", "2024-02-15", "10:00 AM", "Juan Pérez", "Consulta General"},
@@ -117,6 +118,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     }
 
     private void initializeHorariosTable() {
+         //traer datos de los horaris desde la BD, estos son datos de prueba
         String[] columnNames = {"Día", "Hora Inicio", "Hora Fin", "Disponible"};
         Object[][] data = {
             {"Lunes", "08:00 AM", "12:00 PM", "Disponible"},
@@ -128,10 +130,11 @@ public class PanelAdmin extends javax.swing.JFrame {
     }
 
     private void initializeInventarioTable() {
+        //traer datos del inventario desde la BD, estos son datos de prueba
         String[] columnNames = {"ID", "Producto", "Cantidad", "Precio"};
         Object[][] data = {
-            {"1", "Medicamento A", "50", "$10.00"},
-            {"2", "Suplemento B", "30", "$15.50"}
+            {"1", "A", "50", "$10.00"},
+            {"2", "B", "30", "$15.50"}
         };
         
         tableInventario.setModel(new DefaultTableModel(data, columnNames));
@@ -139,6 +142,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     }
 
     private void initializeVentasTable() {
+        //traer datos del las ventas desde la BD, estos son datos de prueba
         String[] columnNames = {"ID Venta", "Fecha", "Producto", "Cantidad", "Total"};
         Object[][] data = {
             {"001", "2024-02-14", "Medicamento A", "2", "$20.00"},
@@ -155,7 +159,7 @@ public class PanelAdmin extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration
+    // Variables
     private javax.swing.JTabbedPane jTabbedPane1;
     
     // Panels

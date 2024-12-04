@@ -44,13 +44,12 @@ public class PanelUsuario extends javax.swing.JFrame {
         btnComprarProducto = new javax.swing.JButton("Comprar");
         btnVerCarrito = new javax.swing.JButton("Ver Carrito");
 
-        // Initialize Tables with placeholder columns
-        // TODO: Replace with actual database connection and data retrieval
+        
         initializeCitasTable();
         initializeServiciosTable();
         initializeProductosTable();
 
-        // Appointments Panel Layout
+        
         panelCitas.setLayout(new BorderLayout());
         panelCitas.add(jScrollPaneCitas, BorderLayout.CENTER);
         
@@ -59,7 +58,7 @@ public class PanelUsuario extends javax.swing.JFrame {
         panelBotonesCitas.add(btnCancelarCita);
         panelCitas.add(panelBotonesCitas, BorderLayout.SOUTH);
 
-        // Services Panel Layout
+        
         panelServicios.setLayout(new BorderLayout());
         panelServicios.add(jScrollPaneServicios, BorderLayout.CENTER);
         
@@ -67,7 +66,7 @@ public class PanelUsuario extends javax.swing.JFrame {
         panelBotonesServicios.add(btnVerDetalleServicio);
         panelServicios.add(panelBotonesServicios, BorderLayout.SOUTH);
 
-        // Products Panel Layout
+        
         panelProductos.setLayout(new BorderLayout());
         panelProductos.add(jScrollPaneProductos, BorderLayout.CENTER);
         
@@ -76,7 +75,7 @@ public class PanelUsuario extends javax.swing.JFrame {
         panelBotonesProductos.add(btnVerCarrito);
         panelProductos.add(panelBotonesProductos, BorderLayout.SOUTH);
 
-        // Add Panels to Tabbed Pane
+        
         jTabbedPane1.addTab("Mis Citas", panelCitas);
         jTabbedPane1.addTab("Servicios", panelServicios);
         jTabbedPane1.addTab("Productos", panelProductos);
@@ -87,21 +86,21 @@ public class PanelUsuario extends javax.swing.JFrame {
     }
 
     private void initializeCitasTable() {
-        // TODO: Connect to database to retrieve actual appointments
+        //  Traer datos desde la DB
         String[] columnNames = {"ID", "Fecha", "Hora", "Servicio", "Estado"};
         tableCitas.setModel(new DefaultTableModel(columnNames, 0));
         jScrollPaneCitas.setViewportView(tableCitas);
     }
 
     private void initializeServiciosTable() {
-        // TODO: Connect to database to retrieve available services
+        // Traer datos desde la DB
         String[] columnNames = {"Servicio", "Descripción", "Duración", "Precio"};
         tableServicios.setModel(new DefaultTableModel(columnNames, 0));
         jScrollPaneServicios.setViewportView(tableServicios);
     }
 
     private void initializeProductosTable() {
-        // TODO: Connect to database to retrieve available products
+        // Traer datos del inventario desde la DB
         String[] columnNames = {"Producto", "Descripción", "Precio", "Stock"};
         tableProductos.setModel(new DefaultTableModel(columnNames, 0));
         jScrollPaneProductos.setViewportView(tableProductos);
@@ -113,7 +112,7 @@ public class PanelUsuario extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration
+    // Variables
     private javax.swing.JTabbedPane jTabbedPane1;
     
     // Panels
