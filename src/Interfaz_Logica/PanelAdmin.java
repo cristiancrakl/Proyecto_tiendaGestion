@@ -118,33 +118,23 @@ public class PanelAdmin extends javax.swing.JFrame {
 
         tableHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Dia", "Hora Inicio", "Horas Fin", "Estado"
+                "Dia", "Hora Inicio", "Horas Fin", "Estado", "Fecha"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                true, true, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane3.setViewportView(tableHorarios);
 
         btnAgregarHorario.setText("Agregar Horario");
+        btnAgregarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarHorarioActionPerformed(evt);
+            }
+        });
 
         btnEliminarHorario.setText("Eliminar Horario");
 
@@ -286,6 +276,12 @@ public class PanelAdmin extends javax.swing.JFrame {
     private void btnAgregarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCitaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarCitaActionPerformed
+
+    private void btnAgregarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarHorarioActionPerformed
+        // TODO add your handling code here:
+        AñadirHorario añadirh = new AñadirHorario();
+        añadirh.setVisible(true);
+    }//GEN-LAST:event_btnAgregarHorarioActionPerformed
     
     /**
      * @param args the command line arguments
