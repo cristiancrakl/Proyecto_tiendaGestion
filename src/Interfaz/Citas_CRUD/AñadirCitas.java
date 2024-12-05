@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaz;
+package Interfaz.Citas_CRUD;
 
+import Logica.ConexionLOGIC.Conexion;
+import Interfaz.PanelesPrincipales.PanelAdmin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -16,12 +18,12 @@ import javax.swing.JOptionPane;
  *
  * @author Lenovo
  */
-public class AñadirHorario extends javax.swing.JFrame {
+public class AñadirCitas extends javax.swing.JFrame {
 
     /**
      * Creates new form F_registro
      */
-    public AñadirHorario() {
+    public AñadirCitas() {
         initComponents();
         
     }
@@ -140,11 +142,21 @@ public class AñadirHorario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btn_VolverInicioActionPerformed(java.awt.event.ActionEvent evt){// GEN-FIRST:btn_VolverInicioActionPerformed
+        this.dispose();
+
         PanelAdmin panelAdmin = new PanelAdmin(); // Crear una nueva instancia de LoginUsuario
         panelAdmin.setVisible(true);
+
+        
     }                                          
     private void btn_AgregarHorarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_iniciar_SesionActionPerformed
-       // Get the values entered by the user
+   
+        agregarHorario();
+
+    }
+
+    private void agregarHorario(){
+            // Get the values entered by the user
     String dia = textDia.getText();
     String horaInicio = TextHoraInicio.getText().trim();
     String horaFinal = TextHorafinal.getText().trim();
@@ -164,7 +176,7 @@ public class AñadirHorario extends javax.swing.JFrame {
     }
 
     // Insert the new horario into the database
-    String query = "INSERT INTO horarios (dia, hora_inicio, hora_final, estado) VALUES (?, ?, ?, ?)";
+    String query = "INSERT INTO horarioscitas (dia, hora, servicio, estado) VALUES (?, ?, ?, ?)";
     try (PreparedStatement statement = connection.prepareStatement(query)) {
         statement.setString(1, dia);
         statement.setString(2, horaInicio);
@@ -173,6 +185,7 @@ public class AñadirHorario extends javax.swing.JFrame {
         int rowsAffected = statement.executeUpdate();
         if (rowsAffected > 0) {
             JOptionPane.showMessageDialog(this, "Horario added successfully.");
+            
         } else {
             JOptionPane.showMessageDialog(this, "Error adding horario.");
         }
@@ -205,7 +218,7 @@ public class AñadirHorario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AñadirHorario().setVisible(true);
+                new AñadirCitas().setVisible(true);
             }
         });
    

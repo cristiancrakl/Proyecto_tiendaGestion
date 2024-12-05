@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaz;
+package Interfaz.Productos_CRUD;
 
+import Logica.ConexionLOGIC.Conexion;
+import Interfaz.PanelesPrincipales.PanelAdmin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -151,6 +153,9 @@ public class AñadirProducto extends javax.swing.JFrame {
     private void btn_VolverInicioActionPerformed(java.awt.event.ActionEvent evt){// GEN-FIRST:btn_VolverInicioActionPerformed
         PanelAdmin panelAdmin = new PanelAdmin(); // Crear una nueva instancia de LoginUsuario
         panelAdmin.setVisible(true);
+
+        this.dispose(); // Cierra la ventana actual
+
     }                                          
     private void btn_AgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_iniciar_SesionActionPerformed
         
@@ -198,6 +203,9 @@ public class AñadirProducto extends javax.swing.JFrame {
 
         PanelAdmin panelAdmin = new PanelAdmin(); // Crear una nueva instancia de LoginUsuario
         panelAdmin.setVisible(true); // Hacer visible el panel de LoginUsuario
+        
+        this.dispose(); // Cerrar la ventana actual
+        
     }
     
 

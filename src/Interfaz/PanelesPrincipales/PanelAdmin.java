@@ -2,18 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaz;
+package Interfaz.PanelesPrincipales;
+
+import Interfaz.Productos_CRUD.AñadirProducto;
+import Interfaz.Citas_CRUD.AñadirCitas;
+import Logica.ConexionLOGIC.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author R
  */
 public class PanelAdmin extends javax.swing.JFrame {
+
     /**
      * Creates new form PanelUsuario
      */
     public PanelAdmin() {
         initComponents();
+        cargarCitas();
+        cargarProductos();
     }
 
     /**
@@ -27,11 +40,12 @@ public class PanelAdmin extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jScrollPaneServicios = new javax.swing.JTabbedPane();
-        panelHorarios = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableHorarios = new javax.swing.JTable();
-        btnAgregarHorario = new javax.swing.JButton();
-        btnEliminarHorario = new javax.swing.JButton();
+        panelCitas = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableCitas = new javax.swing.JTable();
+        label1 = new java.awt.Label();
+        btn_agregarCita = new javax.swing.JButton();
+        btn_eliminarCita = new javax.swing.JButton();
         panelInventario = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableInventario = new javax.swing.JTable();
@@ -52,7 +66,7 @@ public class PanelAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tableHorarios.setModel(new javax.swing.table.DefaultTableModel(
+        tableCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -60,53 +74,66 @@ public class PanelAdmin extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Dia", "Hora Inicio", "Horas Fin", "Estado", "Fecha"
+                "ID", "Fecha", "Hora", "Servicio", "Estado"
             }
-        ));
-        jScrollPane3.setViewportView(tableHorarios);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        btnAgregarHorario.setText("Agregar Horario");
-        btnAgregarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableCitas);
+
+        label1.setText("Horarios Disponibles");
+
+        btn_agregarCita.setText("Agregar Horario de Cita");
+        btn_agregarCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarHorarioActionPerformed(evt);
+                btn_agregarCitaActionPerformed(evt);
             }
         });
 
-        btnEliminarHorario.setText("Eliminar Horario");
-        btnEliminarHorario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarHorarioActionPerformed(evt);
-            }
-        });
+        btn_eliminarCita.setText("Eliminar Horario de Cita ");
 
-        javax.swing.GroupLayout panelHorariosLayout = new javax.swing.GroupLayout(panelHorarios);
-        panelHorarios.setLayout(panelHorariosLayout);
-        panelHorariosLayout.setHorizontalGroup(
-            panelHorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHorariosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelCitasLayout = new javax.swing.GroupLayout(panelCitas);
+        panelCitas.setLayout(panelCitasLayout);
+        panelCitasLayout.setHorizontalGroup(
+            panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCitasLayout.createSequentialGroup()
+                .addGroup(panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCitasLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
+                    .addGroup(panelCitasLayout.createSequentialGroup()
+                        .addGap(195, 195, 195)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHorariosLayout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(btnAgregarHorario)
+            .addGroup(panelCitasLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(btn_agregarCita)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminarHorario)
-                .addGap(117, 117, 117))
+                .addComponent(btn_eliminarCita)
+                .addGap(74, 74, 74))
         );
-        panelHorariosLayout.setVerticalGroup(
-            panelHorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHorariosLayout.createSequentialGroup()
+        panelCitasLayout.setVerticalGroup(
+            panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCitasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addGroup(panelHorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminarHorario)
-                    .addComponent(btnAgregarHorario))
-                .addGap(34, 34, 34))
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_agregarCita)
+                    .addComponent(btn_eliminarCita))
+                .addGap(32, 32, 32))
         );
 
-        jScrollPaneServicios.addTab("Horarios", panelHorarios);
+        jScrollPaneServicios.addTab("Citas", panelCitas);
 
         tableInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,9 +221,10 @@ public class PanelAdmin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPaneServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,18 +242,86 @@ public class PanelAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         AñadirProducto añadirp = new AñadirProducto();
         añadirp.setVisible(true);
+
+        this.dispose();
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
-    private void btnAgregarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarHorarioActionPerformed
-        // TODO add your handling code here:
-        AñadirHorario añadirh = new AñadirHorario();
+    private void btn_agregarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarCitaActionPerformed
+        AñadirCitas añadirh = new AñadirCitas();
         añadirh.setVisible(true);
-    }//GEN-LAST:event_btnAgregarHorarioActionPerformed
 
-    private void btnEliminarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarHorarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarHorarioActionPerformed
-    
+        this.dispose();
+    }//GEN-LAST:event_btn_agregarCitaActionPerformed
+
+    private void cargarCitas() {
+    DefaultTableModel model = (DefaultTableModel) tableCitas.getModel();
+    model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+
+    Connection connection = Conexion.getInstancia().conectar();
+    if (connection == null) {
+        JOptionPane.showMessageDialog(this, "Error al conectar a la base de datos.");
+        return;
+    }
+
+    try {
+        String query = "SELECT * FROM horariosCitas"; // Cambia esto según tu estructura de base de datos
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id"); // Cambia "id" por el nombre de tu columna
+            String fecha = resultSet.getString("dia"); // Cambia "fecha" por el nombre de tu columna
+            String hora = resultSet.getString("hora"); // Cambia "hora" por el nombre de tu columna
+            String servicio = resultSet.getString("servicio"); // Cambia "servicio" por el nombre de tu columna
+            String estado = resultSet.getString("estado"); // Cambia "estado" por el nombre de tu columna
+
+            model.addRow(new Object[]{id, fecha, hora, servicio, estado});
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar citas: " + e.getMessage());
+    } finally {
+        try {
+            connection.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cerrar la conexión: " + e.getMessage());
+        }
+    }
+}
+
+private void cargarProductos() {
+    DefaultTableModel model = (DefaultTableModel) tableInventario.getModel();
+    model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+
+    Connection connection = Conexion.getInstancia().conectar();
+    if (connection == null) {
+        JOptionPane.showMessageDialog(this, "Error al conectar a la base de datos.");
+        return;
+    }
+
+    try {
+        String query = "SELECT id_producto, nombre_producto, cantidad, precio FROM inventario"; // Cambia esto según tu estructura de base de datos
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            String idProducto = resultSet.getString("id_producto");
+            String nombreProducto = resultSet.getString("nombre_producto");
+            int cantidad = resultSet.getInt("cantidad");
+            float precio = resultSet.getFloat("precio");
+
+            model.addRow(new Object[]{idProducto, nombreProducto, cantidad, precio});
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar productos: " + e.getMessage());
+    } finally {
+        try {
+            connection.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cerrar la conexión: " + e.getMessage());
+        }
+    }
+}
+
     /**
      * @param args the command line arguments
      */
@@ -263,18 +359,19 @@ public class PanelAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarHorario;
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnEditarProducto;
-    private javax.swing.JButton btnEliminarHorario;
     private javax.swing.JButton btnEliminarProducto;
+    private javax.swing.JButton btn_agregarCita;
+    private javax.swing.JButton btn_eliminarCita;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jScrollPaneServicios;
-    private javax.swing.JPanel panelHorarios;
+    private java.awt.Label label1;
+    private javax.swing.JPanel panelCitas;
     private javax.swing.JPanel panelInventario;
-    private javax.swing.JTable tableHorarios;
+    private javax.swing.JTable tableCitas;
     private javax.swing.JTable tableInventario;
     // End of variables declaration//GEN-END:variables
 }
