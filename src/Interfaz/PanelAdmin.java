@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaz_Logica;
+package Interfaz;
 
 /**
  *
@@ -27,11 +27,6 @@ public class PanelAdmin extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jScrollPaneServicios = new javax.swing.JTabbedPane();
-        panelCitas = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableCitas = new javax.swing.JTable();
-        btnAgregarCita = new javax.swing.JButton();
-        btnEliminarCita = new javax.swing.JButton();
         panelHorarios = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableHorarios = new javax.swing.JTable();
@@ -57,65 +52,6 @@ public class PanelAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tableCitas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Hora", "Fecha", "Cliente", "Servicio"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tableCitas);
-
-        btnAgregarCita.setText("Agregar Cita");
-        btnAgregarCita.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarCitaActionPerformed(evt);
-            }
-        });
-
-        btnEliminarCita.setText("Eliminar Cita");
-
-        javax.swing.GroupLayout panelCitasLayout = new javax.swing.GroupLayout(panelCitas);
-        panelCitas.setLayout(panelCitasLayout);
-        panelCitasLayout.setHorizontalGroup(
-            panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCitasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(panelCitasLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(btnAgregarCita)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminarCita)
-                .addGap(54, 54, 54))
-        );
-        panelCitasLayout.setVerticalGroup(
-            panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCitasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                .addGap(72, 72, 72)
-                .addGroup(panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarCita)
-                    .addComponent(btnEliminarCita))
-                .addGap(32, 32, 32))
-        );
-
-        jScrollPaneServicios.addTab("Citas", panelCitas);
-
         tableHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -137,6 +73,11 @@ public class PanelAdmin extends javax.swing.JFrame {
         });
 
         btnEliminarHorario.setText("Eliminar Horario");
+        btnEliminarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarHorarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelHorariosLayout = new javax.swing.GroupLayout(panelHorarios);
         panelHorarios.setLayout(panelHorariosLayout);
@@ -275,15 +216,15 @@ public class PanelAdmin extends javax.swing.JFrame {
         añadirp.setVisible(true);
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
-    private void btnAgregarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCitaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarCitaActionPerformed
-
     private void btnAgregarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarHorarioActionPerformed
         // TODO add your handling code here:
         AñadirHorario añadirh = new AñadirHorario();
         añadirh.setVisible(true);
     }//GEN-LAST:event_btnAgregarHorarioActionPerformed
+
+    private void btnEliminarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarHorarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarHorarioActionPerformed
     
     /**
      * @param args the command line arguments
@@ -322,22 +263,17 @@ public class PanelAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarCita;
     private javax.swing.JButton btnAgregarHorario;
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnEditarProducto;
-    private javax.swing.JButton btnEliminarCita;
     private javax.swing.JButton btnEliminarHorario;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jScrollPaneServicios;
-    private javax.swing.JPanel panelCitas;
     private javax.swing.JPanel panelHorarios;
     private javax.swing.JPanel panelInventario;
-    private javax.swing.JTable tableCitas;
     private javax.swing.JTable tableHorarios;
     private javax.swing.JTable tableInventario;
     // End of variables declaration//GEN-END:variables

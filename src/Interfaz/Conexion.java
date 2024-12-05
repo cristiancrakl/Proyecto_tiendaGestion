@@ -1,4 +1,4 @@
-package Interfaz_Logica;
+package Interfaz;
 
 import java.sql.*;
 

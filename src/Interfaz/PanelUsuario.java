@@ -2,7 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaz_Logica;
+package Interfaz;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,6 +21,7 @@ public class PanelUsuario extends javax.swing.JFrame {
      */
     public PanelUsuario() {
         initComponents();
+        cargarCitas();
     }
 
     /**
@@ -31,8 +39,6 @@ public class PanelUsuario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCitas = new javax.swing.JTable();
         label1 = new java.awt.Label();
-        btnNuevaCita = new javax.swing.JButton();
-        btnCancelarCita = new javax.swing.JButton();
         panelProductos = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableProductos = new javax.swing.JTable();
@@ -43,7 +49,6 @@ public class PanelUsuario extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableServicios = new javax.swing.JTable();
         label2 = new java.awt.Label();
-        btnVerDetalleServicio = new javax.swing.JButton();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -81,10 +86,6 @@ public class PanelUsuario extends javax.swing.JFrame {
 
         label1.setText("Horarios Disponibles");
 
-        btnNuevaCita.setText("Agendar Cita");
-
-        btnCancelarCita.setText("Cancelar Cita");
-
         javax.swing.GroupLayout panelCitasLayout = new javax.swing.GroupLayout(panelCitas);
         panelCitas.setLayout(panelCitasLayout);
         panelCitasLayout.setHorizontalGroup(
@@ -93,12 +94,6 @@ public class PanelUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(panelCitasLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(btnNuevaCita)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancelarCita)
-                .addGap(54, 54, 54))
             .addGroup(panelCitasLayout.createSequentialGroup()
                 .addGap(195, 195, 195)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,14 +106,8 @@ public class PanelUsuario extends javax.swing.JFrame {
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevaCita)
-                    .addComponent(btnCancelarCita))
-                .addGap(32, 32, 32))
+                .addGap(73, 73, 73))
         );
-
-        label1.getAccessibleContext().setAccessibleName("Horarios Disponibles");
 
         jScrollPaneServicios.addTab("Citas", panelCitas);
 
@@ -214,13 +203,6 @@ public class PanelUsuario extends javax.swing.JFrame {
 
         label2.setText("Servicios Disponibles");
 
-        btnVerDetalleServicio.setText("Ver Detalles");
-        btnVerDetalleServicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerDetalleServicioActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelServiciosLayout = new javax.swing.GroupLayout(panelServicios);
         panelServicios.setLayout(panelServiciosLayout);
         panelServiciosLayout.setHorizontalGroup(
@@ -231,13 +213,8 @@ public class PanelUsuario extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
                     .addGroup(panelServiciosLayout.createSequentialGroup()
-                        .addGroup(panelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelServiciosLayout.createSequentialGroup()
-                                .addGap(197, 197, 197)
-                                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelServiciosLayout.createSequentialGroup()
-                                .addGap(215, 215, 215)
-                                .addComponent(btnVerDetalleServicio)))
+                        .addGap(197, 197, 197)
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -248,9 +225,7 @@ public class PanelUsuario extends javax.swing.JFrame {
                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVerDetalleServicio)
-                .addGap(16, 16, 16))
+                .addGap(51, 51, 51))
         );
 
         jScrollPaneServicios.addTab("Servicios", panelServicios);
@@ -273,9 +248,43 @@ public class PanelUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVerDetalleServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleServicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerDetalleServicioActionPerformed
+    
+
+
+    private void cargarCitas() {
+    DefaultTableModel model = (DefaultTableModel) tableCitas.getModel();
+    model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+
+    Connection connection = Conexion.getInstancia().conectar();
+    if (connection == null) {
+        JOptionPane.showMessageDialog(this, "Error al conectar a la base de datos.");
+        return;
+    }
+
+    try {
+        String query = "SELECT * FROM horariosCitas"; // Cambia esto según tu estructura de base de datos
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id"); // Cambia "id" por el nombre de tu columna
+            String fecha = resultSet.getString("dia"); // Cambia "fecha" por el nombre de tu columna
+            String hora = resultSet.getString("hora_inicio"); // Cambia "hora" por el nombre de tu columna
+            String servicio = resultSet.getString("hora_final"); // Cambia "servicio" por el nombre de tu columna
+            String estado = resultSet.getString("estado"); // Cambia "estado" por el nombre de tu columna
+
+            model.addRow(new Object[]{id, fecha, hora, servicio, estado});
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar citas: " + e.getMessage());
+    } finally {
+        try {
+            connection.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cerrar la conexión: " + e.getMessage());
+        }
+    }
+}
     
     /**
      * @param args the command line arguments
@@ -313,11 +322,8 @@ public class PanelUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelarCita;
     private javax.swing.JButton btnComprarProducto;
-    private javax.swing.JButton btnNuevaCita;
     private javax.swing.JButton btnVerCarrito;
-    private javax.swing.JButton btnVerDetalleServicio;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

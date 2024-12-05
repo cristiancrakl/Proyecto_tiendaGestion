@@ -2,7 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaz_Logica;
+package Interfaz;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,8 +42,8 @@ public class AñadirProducto extends javax.swing.JFrame {
         Text_Producto = new javax.swing.JTextField();
         btn_AgregarProducto = new javax.swing.JButton();
         btn_VolverInicio = new javax.swing.JButton();
-        Text_CantidadProducto = new javax.swing.JPasswordField();
-        Precio = new javax.swing.JPasswordField();
+        Int_cantidadProducto = new javax.swing.JTextField();
+        Decimal_precio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,19 +78,13 @@ public class AñadirProducto extends javax.swing.JFrame {
             }
         });
 
-        Precio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrecioActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -92,13 +92,13 @@ public class AñadirProducto extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Id_producto)
+                            .addComponent(Id_producto, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                             .addComponent(Text_Producto)
-                            .addComponent(Text_CantidadProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)))
+                            .addComponent(Int_cantidadProducto)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Precio, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Decimal_precio, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)))
                 .addContainerGap(91, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -129,11 +129,11 @@ public class AñadirProducto extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(Text_CantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Int_cantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Decimal_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(btn_AgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -144,10 +144,6 @@ public class AñadirProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PrecioActionPerformed
-
     private void Id_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Id_productoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Id_productoActionPerformed
@@ -157,8 +153,49 @@ public class AñadirProducto extends javax.swing.JFrame {
         panelAdmin.setVisible(true);
     }                                          
     private void btn_AgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_iniciar_SesionActionPerformed
-        // Cerrar el panel actual (F_registro)
-        // Abrir el panel de LoginUsuario
+        
+        // Obtener los valores ingresados por el usuario
+    String idProducto = Id_producto.getText().trim();
+    String nombreProducto = Text_Producto.getText().trim();
+    String cantidadProducto = Int_cantidadProducto.getText().trim();
+    String precio = Decimal_precio.getText().trim();
+
+    // Validar que los campos no estén vacíos
+    if (idProducto.isEmpty() || nombreProducto.isEmpty() || cantidadProducto.isEmpty() || precio.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+        return;
+    }
+
+    // Conectar a la base de datos
+    Connection connection = Conexion.getInstancia().conectar();
+    if (connection == null) {
+        JOptionPane.showMessageDialog(this, "Error al conectar a la base de datos.");
+        return;
+    }
+
+    // Insertar el nuevo producto en la base de datos
+    String query = "INSERT INTO inventario (id_producto, nombre_producto, cantidad, precio) VALUES (?, ?, ?, ?)";
+    try (PreparedStatement statement = connection.prepareStatement(query)) {
+        statement.setString(1, idProducto);
+        statement.setString(2, nombreProducto);
+        statement.setInt(3, Integer.parseInt(cantidadProducto)); // Asegúrate de que la cantidad sea un entero
+        statement.setFloat(4, Float.parseFloat(precio)); // Asegúrate de que el precio sea un número decimal
+        int rowsAffected = statement.executeUpdate();
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(this, "Producto agregado exitosamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al agregar el producto.");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    } finally {
+        try {
+            connection.close(); // Cerrar la conexión
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al cerrar la conexión: " + e.getMessage());
+        }
+    }
+
         PanelAdmin panelAdmin = new PanelAdmin(); // Crear una nueva instancia de LoginUsuario
         panelAdmin.setVisible(true); // Hacer visible el panel de LoginUsuario
     }
@@ -187,9 +224,9 @@ public class AñadirProducto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Decimal_precio;
     private javax.swing.JTextField Id_producto;
-    private javax.swing.JPasswordField Precio;
-    private javax.swing.JPasswordField Text_CantidadProducto;
+    private javax.swing.JTextField Int_cantidadProducto;
     private javax.swing.JTextField Text_Producto;
     private javax.swing.JButton btn_AgregarProducto;
     private javax.swing.JButton btn_VolverInicio;

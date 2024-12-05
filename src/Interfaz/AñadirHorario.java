@@ -2,7 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interfaz_Logica;
+package Interfaz;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -15,6 +23,7 @@ public class AñadirHorario extends javax.swing.JFrame {
      */
     public AñadirHorario() {
         initComponents();
+        
     }
 
     /**
@@ -36,8 +45,8 @@ public class AñadirHorario extends javax.swing.JFrame {
         TextHoraInicio = new javax.swing.JTextField();
         btn_AgregarHorario = new javax.swing.JButton();
         btn_VolverInicio = new javax.swing.JButton();
-        TextHoraFinal = new javax.swing.JPasswordField();
-        txt_Estado = new javax.swing.JPasswordField();
+        combo_Disponible = new javax.swing.JComboBox<>();
+        TextHorafinal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,36 +75,28 @@ public class AñadirHorario extends javax.swing.JFrame {
             }
         });
 
-        txt_Estado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_EstadoActionPerformed(evt);
-            }
-        });
+        combo_Disponible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible ", "No disponible" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textDia)
-                            .addComponent(TextHoraInicio)
-                            .addComponent(TextHoraFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(combo_Disponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textDia, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                    .addComponent(TextHoraInicio)
+                    .addComponent(TextHorafinal))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(254, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,11 +124,11 @@ public class AñadirHorario extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(TextHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextHorafinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txt_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combo_Disponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(btn_AgregarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -137,20 +138,54 @@ public class AñadirHorario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txt_EstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_EstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_EstadoActionPerformed
     
     private void btn_VolverInicioActionPerformed(java.awt.event.ActionEvent evt){// GEN-FIRST:btn_VolverInicioActionPerformed
         PanelAdmin panelAdmin = new PanelAdmin(); // Crear una nueva instancia de LoginUsuario
         panelAdmin.setVisible(true);
-    }//GEN-LAST:btn_VolverInicioActionPerformed
+    }                                          
     private void btn_AgregarHorarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_iniciar_SesionActionPerformed
-        // Cerrar el panel actual (F_registro)
-        // Abrir el panel de LoginUsuario
-        PanelAdmin panelAdmin = new PanelAdmin(); // Crear una nueva instancia de LoginUsuario
-        panelAdmin.setVisible(true); // Hacer visible el panel de LoginUsuario
+       // Get the values entered by the user
+    String dia = textDia.getText();
+    String horaInicio = TextHoraInicio.getText().trim();
+    String horaFinal = TextHorafinal.getText().trim();
+    String estado = combo_Disponible.getSelectedItem().toString(); 
+
+    // Validate the input
+    if (dia.isEmpty() || horaInicio.isEmpty() || horaFinal.isEmpty() || estado.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+        return;
+    }
+
+    // Connect base de datos
+    Connection connection = Conexion.getInstancia().conectar();
+    if (connection == null) {
+        JOptionPane.showMessageDialog(this, "Error connecting to the database.");
+        return;
+    }
+
+    // Insert the new horario into the database
+    String query = "INSERT INTO horarios (dia, hora_inicio, hora_final, estado) VALUES (?, ?, ?, ?)";
+    try (PreparedStatement statement = connection.prepareStatement(query)) {
+        statement.setString(1, dia);
+        statement.setString(2, horaInicio);
+        statement.setString(3, horaFinal);
+        statement.setString(4, estado);
+        int rowsAffected = statement.executeUpdate();
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(this, "Horario added successfully.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error adding horario.");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+
+    // Close the connection
+    try {
+        connection.close();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error closing connection: " + e.getMessage());
+    }
     }
     
 
@@ -177,16 +212,16 @@ public class AñadirHorario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField TextHoraFinal;
     private javax.swing.JTextField TextHoraInicio;
+    private javax.swing.JTextField TextHorafinal;
     private javax.swing.JButton btn_AgregarHorario;
     private javax.swing.JButton btn_VolverInicio;
+    private javax.swing.JComboBox<String> combo_Disponible;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField textDia;
-    private javax.swing.JPasswordField txt_Estado;
     // End of variables declaration//GEN-END:variables
 }
