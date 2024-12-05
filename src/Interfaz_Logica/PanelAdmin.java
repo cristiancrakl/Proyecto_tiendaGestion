@@ -271,6 +271,8 @@ public class PanelAdmin extends javax.swing.JFrame {
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         // TODO add your handling code here:
+        AñadirProducto añadirp = new AñadirProducto();
+        añadirp.setVisible(true);
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
     private void btnAgregarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCitaActionPerformed
