@@ -45,6 +45,7 @@ public class PanelAdmin extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         btn_agregarCita = new javax.swing.JButton();
         btn_eliminarCita = new javax.swing.JButton();
+        btn_modificarCita = new javax.swing.JButton();
         panelInventario = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableInventario = new javax.swing.JTable();
@@ -96,6 +97,18 @@ public class PanelAdmin extends javax.swing.JFrame {
         });
 
         btn_eliminarCita.setText("Eliminar Horario de Cita ");
+        btn_eliminarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarCitaActionPerformed(evt);
+            }
+        });
+
+        btn_modificarCita.setText("Modificar Horario de Cita");
+        btn_modificarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarCitaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCitasLayout = new javax.swing.GroupLayout(panelCitas);
         panelCitas.setLayout(panelCitasLayout);
@@ -109,14 +122,14 @@ public class PanelAdmin extends javax.swing.JFrame {
                     .addGroup(panelCitasLayout.createSequentialGroup()
                         .addGap(195, 195, 195)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelCitasLayout.createSequentialGroup()
+                        .addComponent(btn_agregarCita)
+                        .addGap(32, 32, 32)
+                        .addComponent(btn_modificarCita)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_eliminarCita)))
                 .addContainerGap())
-            .addGroup(panelCitasLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(btn_agregarCita)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_eliminarCita)
-                .addGap(74, 74, 74))
         );
         panelCitasLayout.setVerticalGroup(
             panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +141,8 @@ public class PanelAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_agregarCita)
-                    .addComponent(btn_eliminarCita))
+                    .addComponent(btn_eliminarCita)
+                    .addComponent(btn_modificarCita))
                 .addGap(32, 32, 32))
         );
 
@@ -252,6 +266,14 @@ public class PanelAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_agregarCitaActionPerformed
 
+    private void btn_modificarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarCitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_modificarCitaActionPerformed
+
+    private void btn_eliminarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarCitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_eliminarCitaActionPerformed
+
     
 
 
@@ -298,6 +320,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btn_agregarCita;
     private javax.swing.JButton btn_eliminarCita;
+    private javax.swing.JButton btn_modificarCita;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

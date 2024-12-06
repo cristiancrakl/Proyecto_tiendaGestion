@@ -146,12 +146,12 @@ public class AñadirCitas extends javax.swing.JFrame {
     public void btn_AgregarHorarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_iniciar_SesionActionPerformed
 
         String dia = textDia.getText();
-        String horaInicio = TextHoraInicio.getText().trim();
-        String horaFinal = TextHorafinal.getText().trim();
+        String hora = TextHoraInicio.getText().trim();
+        String servicio = TextHorafinal.getText().trim();
         String estado = combo_Disponible.getSelectedItem().toString();
 
         AñadirCitas_Logica citas_Logica = new AñadirCitas_Logica();
-        citas_Logica.agregarHorario(dia, horaInicio, horaFinal, estado);
+        citas_Logica.agregarHorario(dia, hora, servicio, estado);
 
     }
 

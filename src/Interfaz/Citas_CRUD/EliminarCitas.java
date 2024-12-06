@@ -4,12 +4,11 @@
  */
 package Interfaz.Citas_CRUD;
 
-import Logica.Citas_CRUD_Logica.AñadirCitas_Logica;
-import Logica.ConexionLOGIC.Conexion;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import Logica.Citas_CRUD_Logica.EliminarCitas_Logica;
+
+
+
 
 import javax.swing.JOptionPane;
 
@@ -176,43 +175,18 @@ public class EliminarCitas extends javax.swing.JFrame {
     }
 
     private void btn_EliminarHorarioActionPerformed(java.awt.event.ActionEvent evt) {
-        String idEliminar = txt_EliminarID.getText().trim(); // Obtener el ID a eliminar
+        String id = txt_EliminarID.getText().trim(); // Obtener el ID a eliminar
 
-        if (idEliminar.isEmpty()) {
+        if (id.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese un ID.");
             return;
         }
 
-        eliminarHorario(idEliminar);
+        EliminarCitas_Logica eliminarC =new EliminarCitas_Logica();
+        eliminarC.eliminarHorario(id);
     }
 
-    private void eliminarHorario(String id) {
-        // Conectar a la base de datos
-        Connection connection = Conexion.getInstancia().conectar();
-        if (connection == null) {
-            JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos.");
-            return;
-        }
-
-        String query = "DELETE FROM horarioscitas WHERE id = ?"; // Cambia "id" por el nombre de tu columna
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, id);
-            int rowsAffected = statement.executeUpdate();
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Horario eliminado exitosamente.");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontró un horario con ese ID.");
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-        } finally {
-            try {
-                connection.close(); // Cerrar la conexión
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
-            }
-        }
-    }
+    
 
     // GEN-LAST:event_btn_iniciar_SesionActionPerformed
 
