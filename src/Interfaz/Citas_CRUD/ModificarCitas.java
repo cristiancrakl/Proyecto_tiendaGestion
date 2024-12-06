@@ -4,10 +4,16 @@
  */
 package Interfaz.Citas_CRUD;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 
 import Interfaz.PanelesPrincipales.PanelAdmin;
 import Logica.Citas_CRUD_Logica.ModificarCitas_Logica;
+import Logica.ConexionLOGIC.Conexion;
 
 /**
  *
@@ -20,7 +26,6 @@ public class ModificarCitas extends javax.swing.JFrame {
      */
     public ModificarCitas() {
         initComponents();
-        
 
     }
 
@@ -188,7 +193,45 @@ public class ModificarCitas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_buscarIDActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_buscarIDActionPerformed
-        // TODO add your handling code here:
+        String id = txt_idModificar.getText().trim(); // Obtener el ID a buscar
+
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un ID.");
+            return;
+        }
+
+        // Conectar a la base de datos
+        Connection connection = Conexion.getInstancia().conectar();
+        if (connection == null) {
+            JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos.");
+            return;
+        }
+
+        try {
+            // Consultar el horario por ID
+            String query = "SELECT * FROM horarioscitas WHERE id = ?"; // Asegúrate de que el nombre de la tabla y columna sea correcto
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                // Si se encuentra el horario, llenar los campos
+                textDia.setText(resultSet.getString("dia"));
+                TextHoraInicio.setText(resultSet.getString("hora"));
+                TextHorafinal.setText(resultSet.getString("servicio")); // Cambia "servicio" por el nombre correcto de la columna
+                combo_Disponible.setSelectedItem(resultSet.getString("estado")); // Cambia "estado" por el nombre correcto de la columna
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró un horario con ese ID.");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } finally {
+            try {
+                connection.close(); // Cerrar la conexión
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+            }
+        }
     }// GEN-LAST:event_btn_buscarIDActionPerformed
 
     private void btn_VolverInicioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:btn_VolverInicioActionPerformed
@@ -200,29 +243,25 @@ public class ModificarCitas extends javax.swing.JFrame {
     }
 
     private void btn_ModificarHorarioActionPerformed(java.awt.event.ActionEvent evt) {
-        
 
         String dia = textDia.getText().trim();
         String hora = TextHoraInicio.getText().trim();
         String servicio = TextHorafinal.getText().trim();
         String estado = combo_Disponible.getSelectedItem().toString();
         String id = txt_idModificar.getText().trim(); // Obtener el ID a modificar
-    
+
         if (id.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, ingrese un ID.");
             return;
         }
-    
+
         // Crear una instancia de la lógica de modificar citas
         ModificarCitas_Logica modificarCitasLogica = new ModificarCitas_Logica();
         modificarCitasLogica.modificarHorarios(dia, hora, servicio, estado, id);
-            }
-        
-            // GEN-LAST:event_btn_iniciar_SesionActionPerformed
-        
+    }
 
-        
-            /**
+    // GEN-LAST:event_btn_iniciar_SesionActionPerformed
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -262,5 +301,4 @@ public class ModificarCitas extends javax.swing.JFrame {
     private javax.swing.JTextField txt_idModificar;
     // End of variables declaration//GEN-END:variables
 
-    
 }

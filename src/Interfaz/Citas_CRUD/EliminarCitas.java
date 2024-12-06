@@ -6,9 +6,12 @@ package Interfaz.Citas_CRUD;
 
 
 import Logica.Citas_CRUD_Logica.EliminarCitas_Logica;
+import Logica.ConexionLOGIC.Conexion;
 
-
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -163,7 +166,45 @@ public class EliminarCitas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_buscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarIDActionPerformed
-        // TODO add your handling code here:
+        String id = txt_EliminarID.getText().trim(); // Obtener el ID a buscar
+
+    if (id.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Por favor, ingrese un ID.");
+        return;
+    }
+
+    // Conectar a la base de datos
+    Connection connection = Conexion.getInstancia().conectar();
+    if (connection == null) {
+        JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos.");
+        return;
+    }
+
+    try {
+        // Consultar el horario por ID
+        String query = "SELECT * FROM horarioscitas WHERE id = ?"; // Asegúrate de que el nombre de la tabla y columna sea correcto
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            // Si se encuentra el horario, llenar los campos
+            textDia.setText(resultSet.getString("dia"));
+            TextHoraInicio.setText(resultSet.getString("hora"));
+            TextHorafinal.setText(resultSet.getString("servicio")); // Cambia "servicio" por el nombre correcto de la columna
+            combo_Disponible.setSelectedItem(resultSet.getString("estado")); // Cambia "estado" por el nombre correcto de la columna
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró un horario con ese ID.");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+    } finally {
+        try {
+            connection.close(); // Cerrar la conexión
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+        }
+    }
     }//GEN-LAST:event_btn_buscarIDActionPerformed
 
     private void btn_VolverInicioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:btn_VolverInicioActionPerformed
