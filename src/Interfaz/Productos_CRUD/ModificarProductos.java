@@ -4,7 +4,8 @@
  */
 package Interfaz.Productos_CRUD;
 
-import Logica.Productos_CRUD_Logica.AñadirProductos_Logica;
+
+import Logica.Productos_CRUD_Logica.ModificarProductos_Logica;
 import Interfaz.PanelesPrincipales.PanelAdmin;
 
 /**
@@ -38,17 +39,19 @@ public class ModificarProductos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         Id_producto = new javax.swing.JTextField();
         Text_Producto = new javax.swing.JTextField();
-        btn_AgregarProducto = new javax.swing.JButton();
+        btn_ModificarProducto = new javax.swing.JButton();
         btn_VolverInicio = new javax.swing.JButton();
         Int_cantidadProducto = new javax.swing.JTextField();
         Decimal_precio = new javax.swing.JTextField();
+        btn_buscarID = new javax.swing.JButton();
+        txt_EliminarID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("ID");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Crear Nuevo Producto");
+        jLabel2.setText("Modificar Producto");
 
         jLabel3.setText("Producto");
 
@@ -62,10 +65,10 @@ public class ModificarProductos extends javax.swing.JFrame {
             }
         });
 
-        btn_AgregarProducto.setText("Agregar Producto");
-        btn_AgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btn_ModificarProducto.setText("Modificar Producto");
+        btn_ModificarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AgregarProductoActionPerformed(evt);
+                btn_ModificarProductoActionPerformed(evt);
             }
         });
 
@@ -75,6 +78,15 @@ public class ModificarProductos extends javax.swing.JFrame {
                 btn_VolverInicioActionPerformed(evt);
             }
         });
+
+        btn_buscarID.setText("Buscar");
+        btn_buscarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarIDActionPerformed(evt);
+            }
+        });
+
+        txt_EliminarID.setText("Buscar id");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,9 +115,13 @@ public class ModificarProductos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(252, 252, 252))
+                        .addGap(41, 41, 41)
+                        .addComponent(txt_EliminarID, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_buscarID)
+                        .addGap(14, 14, 14))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_AgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_ModificarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(268, 268, 268))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btn_VolverInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,7 +131,11 @@ public class ModificarProductos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_buscarID)
+                        .addComponent(txt_EliminarID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -133,7 +153,7 @@ public class ModificarProductos extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(Decimal_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(btn_AgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_ModificarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_VolverInicio)
                 .addGap(22, 22, 22))
@@ -141,6 +161,10 @@ public class ModificarProductos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_buscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_buscarIDActionPerformed
 
     private void Id_productoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Id_productoActionPerformed
         // TODO add your handling code here:
@@ -154,18 +178,19 @@ public class ModificarProductos extends javax.swing.JFrame {
 
     }
 
-    private void btn_AgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_iniciar_SesionActionPerformed
-
+private void btn_ModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {
+        // Obtener los valores de los campos de texto
         String idProducto = Id_producto.getText().trim();
         String nombreProducto = Text_Producto.getText().trim();
         String cantidadProducto = Int_cantidadProducto.getText().trim();
         String precio = Decimal_precio.getText().trim();
 
-        AñadirProductos_Logica añadirProductos = new AñadirProductos_Logica();
-        añadirProductos.añadirProductos(idProducto, nombreProducto, cantidadProducto, precio);
+        // Crear una instancia de la lógica de modificación de productos
+        ModificarProductos_Logica modificarProductosLogica = new ModificarProductos_Logica();
+        modificarProductosLogica.modificarProducto(idProducto, nombreProducto, cantidadProducto, precio);
 
+        // Cerrar la ventana actual
         this.dispose();
-
     }
 
     // GEN-LAST:event_btn_iniciar_SesionActionPerformed
@@ -199,12 +224,14 @@ public class ModificarProductos extends javax.swing.JFrame {
     private javax.swing.JTextField Id_producto;
     private javax.swing.JTextField Int_cantidadProducto;
     private javax.swing.JTextField Text_Producto;
-    private javax.swing.JButton btn_AgregarProducto;
+    private javax.swing.JButton btn_ModificarProducto;
     private javax.swing.JButton btn_VolverInicio;
+    private javax.swing.JButton btn_buscarID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txt_EliminarID;
     // End of variables declaration//GEN-END:variables
 }
