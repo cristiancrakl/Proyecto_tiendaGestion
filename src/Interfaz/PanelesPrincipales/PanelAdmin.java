@@ -5,7 +5,11 @@
 package Interfaz.PanelesPrincipales;
 
 import Interfaz.Productos_CRUD.AñadirProducto;
+import Interfaz.Productos_CRUD.EliminarProductos;
+import Interfaz.Productos_CRUD.ModificarProductos;
 import Interfaz.Citas_CRUD.AñadirCitas;
+import Interfaz.Citas_CRUD.EliminarCitas;
+import Interfaz.Citas_CRUD.ModificarCitas;
 import Logica.PanelesPrincipales_Logica.PanelAdmin_Logica;
 
 /**
@@ -243,13 +247,21 @@ public class PanelAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarProductoActionPerformed
+    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEliminarProductoActionPerformed
+    // Crear una nueva instancia de EliminarProductos
+    EliminarProductos eliminarProductos = new EliminarProductos();
+    eliminarProductos.setVisible(true); // Hacer visible el panel de eliminar productos
 
-    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarProductoActionPerformed
+    this.dispose(); // Cerrar el panel admin actual
+}//GEN-LAST:event_btnEliminarProductoActionPerformed
+
+    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEditarProductoActionPerformed
+    // Crear una nueva instancia de ModificarProductos
+    ModificarProductos modificarProductos = new ModificarProductos();
+    modificarProductos.setVisible(true); // Hacer visible el panel de modificar productos
+
+    this.dispose(); // Cerrar el panel admin actual
+}//GEN-LAST:event_btnEditarProductoActionPerformed
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         // TODO add your handling code here:
@@ -266,13 +278,21 @@ public class PanelAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_agregarCitaActionPerformed
 
-    private void btn_modificarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarCitaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_modificarCitaActionPerformed
+    private void btn_modificarCitaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_modificarCitaActionPerformed
+    // Crear una nueva instancia de ModificarCitas
+    ModificarCitas modificarCitas = new ModificarCitas();
+    modificarCitas.setVisible(true); // Hacer visible el panel de modificar citas
 
-    private void btn_eliminarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarCitaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_eliminarCitaActionPerformed
+    this.dispose(); // Cerrar el panel admin actual
+}//GEN-LAST:event_btn_modificarCitaActionPerformed
+
+    private void btn_eliminarCitaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_eliminarCitaActionPerformed
+    // Crear una nueva instancia de EliminarCitas
+    EliminarCitas eliminarCitas = new EliminarCitas();
+    eliminarCitas.setVisible(true); // Hacer visible el panel de eliminar citas
+
+    this.dispose(); // Cerrar el panel admin actual
+}//GEN-LAST:event_btn_eliminarCitaActionPerformed
 
     
 
