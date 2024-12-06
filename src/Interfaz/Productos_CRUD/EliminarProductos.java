@@ -310,9 +310,14 @@ public class EliminarProductos extends javax.swing.JFrame {
                 // Crear una instancia de la lógica de eliminación de productos
                 EliminarProductos_Logica eliminarProductosLogica = new EliminarProductos_Logica();
                 eliminarProductosLogica.eliminarProducto(idProducto);
-
+                
+                PanelAdmin panelAdmin = new PanelAdmin(); // Crear una nueva instancia de panel admin
+                panelAdmin.setVisible(true);
+        
+        
                 // Cerrar la ventana actual
                 this.dispose();
+
         }
 
         // GEN-LAST:event_btn_iniciar_SesionActionPerformed

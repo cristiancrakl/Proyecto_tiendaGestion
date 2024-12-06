@@ -7,6 +7,9 @@ package Interfaz.PanelesPrincipales;
 import Interfaz.Productos_CRUD.AñadirProducto;
 import Interfaz.Productos_CRUD.EliminarProductos;
 import Interfaz.Productos_CRUD.ModificarProductos;
+
+import javax.swing.JOptionPane;
+
 import Interfaz.Citas_CRUD.AñadirCitas;
 import Interfaz.Citas_CRUD.EliminarCitas;
 import Interfaz.Citas_CRUD.ModificarCitas;
@@ -50,12 +53,14 @@ public class PanelAdmin extends javax.swing.JFrame {
         btn_agregarCita = new javax.swing.JButton();
         btn_eliminarCita = new javax.swing.JButton();
         btn_modificarCita = new javax.swing.JButton();
+        btn_CerrarSesion1 = new javax.swing.JButton();
         panelInventario = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableInventario = new javax.swing.JTable();
         btnAgregarProducto = new javax.swing.JButton();
         btnEditarProducto = new javax.swing.JButton();
         btnEliminarProducto = new javax.swing.JButton();
+        btn_CerrarSesion2 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -114,6 +119,13 @@ public class PanelAdmin extends javax.swing.JFrame {
             }
         });
 
+        btn_CerrarSesion1.setText("Cerrar Sesion");
+        btn_CerrarSesion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarSesion1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelCitasLayout = new javax.swing.GroupLayout(panelCitas);
         panelCitas.setLayout(panelCitasLayout);
         panelCitasLayout.setHorizontalGroup(
@@ -126,7 +138,9 @@ public class PanelAdmin extends javax.swing.JFrame {
                     .addGroup(panelCitasLayout.createSequentialGroup()
                         .addGap(195, 195, 195)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_CerrarSesion1)
+                        .addGap(14, 14, 14))
                     .addGroup(panelCitasLayout.createSequentialGroup()
                         .addComponent(btn_agregarCita)
                         .addGap(32, 32, 32)
@@ -139,9 +153,11 @@ public class PanelAdmin extends javax.swing.JFrame {
             panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCitasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_CerrarSesion1))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_agregarCita)
@@ -194,6 +210,13 @@ public class PanelAdmin extends javax.swing.JFrame {
             }
         });
 
+        btn_CerrarSesion2.setText("Cerrar Sesion");
+        btn_CerrarSesion2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarSesion2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelInventarioLayout = new javax.swing.GroupLayout(panelInventario);
         panelInventario.setLayout(panelInventarioLayout);
         panelInventarioLayout.setHorizontalGroup(
@@ -210,14 +233,18 @@ public class PanelAdmin extends javax.swing.JFrame {
                         .addComponent(btnEditarProducto)
                         .addGap(34, 34, 34)
                         .addComponent(btnEliminarProducto)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInventarioLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_CerrarSesion2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelInventarioLayout.setVerticalGroup(
             panelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInventarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                .addComponent(btn_CerrarSesion2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                 .addGap(54, 54, 54)
                 .addGroup(panelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarProducto)
@@ -253,7 +280,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     eliminarProductos.setVisible(true); // Hacer visible el panel de eliminar productos
 
     this.dispose(); // Cerrar el panel admin actual
-}//GEN-LAST:event_btnEliminarProductoActionPerformed
+}                                                   
 
     private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEditarProductoActionPerformed
     // Crear una nueva instancia de ModificarProductos
@@ -261,7 +288,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     modificarProductos.setVisible(true); // Hacer visible el panel de modificar productos
 
     this.dispose(); // Cerrar el panel admin actual
-}//GEN-LAST:event_btnEditarProductoActionPerformed
+}                                                 
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         // TODO add your handling code here:
@@ -278,13 +305,23 @@ public class PanelAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_agregarCitaActionPerformed
 
+    private void btn_CerrarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesion1ActionPerformed
+        this.dispose();
+        JOptionPane.showMessageDialog(null, "cerrando sesion gracias por utilizar nuestros servicios");
+    }//GEN-LAST:event_btn_CerrarSesion1ActionPerformed
+
+    private void btn_CerrarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesion2ActionPerformed
+        this.dispose();
+        JOptionPane.showMessageDialog(null, "cerrando sesion gracias por utilizar nuestros servicios");
+    }//GEN-LAST:event_btn_CerrarSesion2ActionPerformed
+
     private void btn_modificarCitaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_modificarCitaActionPerformed
     // Crear una nueva instancia de ModificarCitas
     ModificarCitas modificarCitas = new ModificarCitas();
     modificarCitas.setVisible(true); // Hacer visible el panel de modificar citas
 
     this.dispose(); // Cerrar el panel admin actual
-}//GEN-LAST:event_btn_modificarCitaActionPerformed
+}                                                 
 
     private void btn_eliminarCitaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_eliminarCitaActionPerformed
     // Crear una nueva instancia de EliminarCitas
@@ -292,7 +329,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     eliminarCitas.setVisible(true); // Hacer visible el panel de eliminar citas
 
     this.dispose(); // Cerrar el panel admin actual
-}//GEN-LAST:event_btn_eliminarCitaActionPerformed
+}                                                
 
     
 
@@ -338,6 +375,8 @@ public class PanelAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnEditarProducto;
     private javax.swing.JButton btnEliminarProducto;
+    private javax.swing.JButton btn_CerrarSesion1;
+    private javax.swing.JButton btn_CerrarSesion2;
     private javax.swing.JButton btn_agregarCita;
     private javax.swing.JButton btn_eliminarCita;
     private javax.swing.JButton btn_modificarCita;

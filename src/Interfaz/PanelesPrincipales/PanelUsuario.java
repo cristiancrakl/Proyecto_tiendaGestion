@@ -5,6 +5,8 @@
 package Interfaz.PanelesPrincipales;
 
 
+import javax.swing.JOptionPane;
+
 import Logica.PanelesPrincipales_Logica.PanelUsuario_Logica;
 
 /**
@@ -38,16 +40,13 @@ public class PanelUsuario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCitas = new javax.swing.JTable();
         label1 = new java.awt.Label();
+        jLabel1 = new javax.swing.JLabel();
+        btn_CerrarSesion1 = new javax.swing.JButton();
         panelProductos = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableProductos = new javax.swing.JTable();
-        label3 = new java.awt.Label();
-        btnComprarProducto = new javax.swing.JButton();
-        btnVerCarrito = new javax.swing.JButton();
-        panelServicios = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableServicios = new javax.swing.JTable();
-        label2 = new java.awt.Label();
+        jLabel2 = new javax.swing.JLabel();
+        btn_CerrarSesion = new javax.swing.JButton();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -85,6 +84,15 @@ public class PanelUsuario extends javax.swing.JFrame {
 
         label1.setText("Horarios Disponibles");
 
+        jLabel1.setText("Para apartar citas: 3042236644");
+
+        btn_CerrarSesion1.setText("Cerrar Sesion");
+        btn_CerrarSesion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarSesion1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelCitasLayout = new javax.swing.GroupLayout(panelCitas);
         panelCitas.setLayout(panelCitasLayout);
         panelCitasLayout.setHorizontalGroup(
@@ -93,19 +101,30 @@ public class PanelUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(panelCitasLayout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCitasLayout.createSequentialGroup()
+                .addGroup(panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelCitasLayout.createSequentialGroup()
+                        .addGap(195, 195, 195)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_CerrarSesion1))
+                    .addGroup(panelCitasLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)))
+                .addGap(22, 22, 22))
         );
         panelCitasLayout.setVerticalGroup(
             panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCitasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                .addGap(73, 73, 73))
+                .addGroup(panelCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_CerrarSesion1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addGap(67, 67, 67))
         );
 
         jScrollPaneServicios.addTab("Citas", panelCitas);
@@ -138,96 +157,47 @@ public class PanelUsuario extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tableProductos);
 
-        label3.setText("Productos Disponibles");
+        jLabel2.setText("Productos Disponibles en la tienda fisica");
 
-        btnComprarProducto.setText("Comprar");
-
-        btnVerCarrito.setText("Ver Carrito");
+        btn_CerrarSesion.setText("Cerrar Sesion");
+        btn_CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelProductosLayout = new javax.swing.GroupLayout(panelProductos);
         panelProductos.setLayout(panelProductosLayout);
         panelProductosLayout.setHorizontalGroup(
             panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProductosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelProductosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
+                    .addGroup(panelProductosLayout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_CerrarSesion)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProductosLayout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(btnComprarProducto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVerCarrito)
-                .addGap(117, 117, 117))
-            .addGroup(panelProductosLayout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelProductosLayout.setVerticalGroup(
             panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProductosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelProductosLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel2))
+                    .addGroup(panelProductosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_CerrarSesion)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVerCarrito)
-                    .addComponent(btnComprarProducto))
-                .addGap(34, 34, 34))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         jScrollPaneServicios.addTab("Productos", panelProductos);
-
-        tableServicios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Servicio", "Descripcion", "Duracion", "Precio"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tableServicios);
-
-        label2.setText("Servicios Disponibles");
-
-        javax.swing.GroupLayout panelServiciosLayout = new javax.swing.GroupLayout(panelServicios);
-        panelServicios.setLayout(panelServiciosLayout);
-        panelServiciosLayout.setHorizontalGroup(
-            panelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelServiciosLayout.createSequentialGroup()
-                .addGroup(panelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelServiciosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
-                    .addGroup(panelServiciosLayout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        panelServiciosLayout.setVerticalGroup(
-            panelServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelServiciosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                .addGap(51, 51, 51))
-        );
-
-        jScrollPaneServicios.addTab("Servicios", panelServicios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -246,6 +216,16 @@ public class PanelUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
+        this.dispose();
+        JOptionPane.showMessageDialog(null, "cerrando sesion gracias por utilizar nuestros servicios");
+    }//GEN-LAST:event_btn_CerrarSesionActionPerformed
+
+    private void btn_CerrarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesion1ActionPerformed
+        this.dispose();
+        JOptionPane.showMessageDialog(null, "cerrando sesion gracias por utilizar nuestros servicios");
+    }//GEN-LAST:event_btn_CerrarSesion1ActionPerformed
 
     
 
@@ -293,21 +273,18 @@ public class PanelUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnComprarProducto;
-    private javax.swing.JButton btnVerCarrito;
+    private javax.swing.JButton btn_CerrarSesion;
+    private javax.swing.JButton btn_CerrarSesion1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jScrollPaneServicios;
     private java.awt.Label label1;
-    private java.awt.Label label2;
-    private java.awt.Label label3;
     private javax.swing.JPanel panelCitas;
     private javax.swing.JPanel panelProductos;
-    private javax.swing.JPanel panelServicios;
     private javax.swing.JTable tableCitas;
     private javax.swing.JTable tableProductos;
-    private javax.swing.JTable tableServicios;
     // End of variables declaration//GEN-END:variables
 }

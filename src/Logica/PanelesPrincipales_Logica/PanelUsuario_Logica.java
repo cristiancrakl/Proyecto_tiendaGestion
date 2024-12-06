@@ -65,9 +65,7 @@ public class PanelUsuario_Logica {
         }
 
         try {
-            String query = "SELECT id_producto, nombre_producto, cantidad, precio FROM inventario"; // Cambia esto según
-                                                                                                    // tu estructura de
-                                                                                                    // base de datos
+            String query = "SELECT id_producto, nombre_producto, cantidad, precio FROM inventario"; // Cambia esto según   // tu estructura de// base de datos
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -77,7 +75,7 @@ public class PanelUsuario_Logica {
                 int cantidad = resultSet.getInt("cantidad");
                 float precio = resultSet.getFloat("precio");
 
-                model.addRow(new Object[] { idProducto, nombreProducto, cantidad, precio });
+                model.addRow(new Object[] { idProducto, nombreProducto, precio, cantidad });
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al cargar productos: " + e.getMessage());
@@ -92,11 +90,11 @@ public class PanelUsuario_Logica {
 
     public void cargarCitas() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+ // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public void cargarProductos() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+ // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

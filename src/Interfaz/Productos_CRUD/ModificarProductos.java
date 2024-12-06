@@ -265,6 +265,10 @@ public class ModificarProductos extends javax.swing.JFrame {
         ModificarProductos_Logica modificarProductosLogica = new ModificarProductos_Logica();
         modificarProductosLogica.modificarProducto(idProducto, nombreProducto, cantidadProducto, precio);
 
+        PanelAdmin panelAdmin = new PanelAdmin(); // Crear una nueva instancia de panel admin
+        panelAdmin.setVisible(true);
+
+
         // Cerrar la ventana actual
         this.dispose();
     }
