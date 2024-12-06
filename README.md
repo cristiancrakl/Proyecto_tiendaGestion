@@ -13,6 +13,7 @@ Este Sistema permite gestinar los clientes, solicitudes de servicios, horarios, 
 - Framework Java Swing
 - Netbeans
 - MySQL - PHP - Xamp
+- IDE: Visual Studio Code, NetBeans 
 
 
 ## Autores
