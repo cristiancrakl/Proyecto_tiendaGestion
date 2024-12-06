@@ -4,7 +4,7 @@
  */
 package Interfaz.Productos_CRUD;
 
-import Logica.Productos_CRUD.AñadirProductos_Logica;
+import Logica.Productos_CRUD_Logica.AñadirProductos_Logica;
 import Interfaz.PanelesPrincipales.PanelAdmin;
 
 /**

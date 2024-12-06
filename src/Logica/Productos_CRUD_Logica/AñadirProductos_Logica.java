@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change null license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit null template
  */
-package Logica.Productos_CRUD;
+package Logica.Productos_CRUD_Logica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
