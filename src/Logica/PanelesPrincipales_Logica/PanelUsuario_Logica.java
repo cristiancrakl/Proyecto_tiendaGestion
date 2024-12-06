@@ -18,8 +18,8 @@ import javax.swing.JTable;
  * @author Cristiancrakl
  */
 public class PanelUsuario_Logica {
-    private void cargarCitas(DefaultTableModel model) {
-        
+    public void cargarCitas(JTable tableCitas) {
+        DefaultTableModel model = (DefaultTableModel) tableCitas.getModel();
         model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
 
         Connection connection = Conexion.getInstancia().conectar();
@@ -53,29 +53,31 @@ public class PanelUsuario_Logica {
         }
     }
 
-    private void cargarProductos(DefaultTableModel model) {
-        
+    public void cargarProductos(JTable tableProductos) {
+        DefaultTableModel model = (DefaultTableModel) tableProductos.getModel();
 
         model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
-    
+
         Connection connection = Conexion.getInstancia().conectar();
         if (connection == null) {
             JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos.");
             return;
         }
-    
+
         try {
-            String query = "SELECT id_producto, nombre_producto, cantidad, precio FROM inventario"; // Cambia esto según tu estructura de base de datos
+            String query = "SELECT id_producto, nombre_producto, cantidad, precio FROM inventario"; // Cambia esto según
+                                                                                                    // tu estructura de
+                                                                                                    // base de datos
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
-    
+
             while (resultSet.next()) {
                 String idProducto = resultSet.getString("id_producto");
                 String nombreProducto = resultSet.getString("nombre_producto");
                 int cantidad = resultSet.getInt("cantidad");
                 float precio = resultSet.getFloat("precio");
-    
-                model.addRow(new Object[]{idProducto, nombreProducto, cantidad, precio});
+
+                model.addRow(new Object[] { idProducto, nombreProducto, cantidad, precio });
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al cargar productos: " + e.getMessage());
@@ -88,11 +90,13 @@ public class PanelUsuario_Logica {
         }
     }
 
-    public void cargarCitas(JTable tableCitas) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void cargarCitas() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void cargarProductos(JTable tableProductos) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void cargarProductos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

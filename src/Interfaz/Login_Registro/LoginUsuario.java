@@ -4,14 +4,9 @@
  */
 package Interfaz.Login_Registro;
 
-import Logica.ConexionLOGIC.Conexion;
-import Interfaz.PanelesPrincipales.PanelAdmin;
-import Interfaz.PanelesPrincipales.PanelUsuario;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
-import javax.swing.JOptionPane;
+import Logica.Login_Registro_Logica.LoginUsuario_Logica;
+
 
 /**
  *
@@ -124,52 +119,18 @@ public class LoginUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_iniciarSesionActionPerformed
-
         String correo = txt_Correo.getText();
         String contraseña = new String(txt_Contraseña.getPassword());
 
-        // Conectar a la base de datos
-        Connection connection = Conexion.getInstancia().conectar();
-        if (connection == null) {
-            JOptionPane.showMessageDialog(this, "No se pudo conectar a la base de datos.");
-            return;
-        }
+        LoginUsuario_Logica loginUsuario=new LoginUsuario_Logica();
+        loginUsuario.Login(correo, contraseña);
 
-        try {
-            // Verificar las credenciales del usuario
-            String query = "SELECT Rol FROM registrohumanos WHERE Correo = ? AND Contraseña = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, correo);
-            preparedStatement.setString(2, contraseña);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        this.dispose();
 
-            if (resultSet.next()) {
-                String rol = resultSet.getString("Rol");
-                if (rol.equals("Admin")) {
-                    // Abrir el panel de administrador
-                    PanelAdmin panelAdmin = new PanelAdmin(); // Asegúrate de tener esta clase
-                    panelAdmin.setVisible(true);
-                } else if (rol.equals("Cliente")) {
-                    // Abrir el panel de usuario
-                    PanelUsuario panelUsuario = new PanelUsuario(); // Asegúrate de tener esta clase
-                    panelUsuario.setVisible(true);
-                }
-                this.dispose(); // Cierra la ventana de login
-            } else {
-                JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        } finally {
-            try {
-                connection.close(); // Cerrar la conexión
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error al cerrar la conexión: " + e.getMessage());
-            } finally {
+        
 
-            }
+       
 
-        }
 
     }// GEN-LAST:event_btn_iniciarSesionActionPerformed
 

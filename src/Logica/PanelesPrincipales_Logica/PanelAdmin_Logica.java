@@ -20,7 +20,8 @@ import javax.swing.JTable;
  */
 public class PanelAdmin_Logica {
 
-    public void cargarCitas(DefaultTableModel model) {
+    public void cargarCitas(JTable tableCitas) {
+        DefaultTableModel model = (DefaultTableModel) tableCitas.getModel();
         model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
 
         Connection connection = Conexion.getInstancia().conectar();
@@ -55,7 +56,8 @@ public class PanelAdmin_Logica {
     }
 
     //para poder recivir tablas se le pone el DefaultTableModel model
-    public void cargarProductos(DefaultTableModel model)  {
+    public void cargarProductos(JTable tableInventario)  {
+        DefaultTableModel model = (DefaultTableModel) tableInventario.getModel();
         model.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
 
         Connection connection = Conexion.getInstancia().conectar();
@@ -88,11 +90,11 @@ public class PanelAdmin_Logica {
         }
     }
 
-    public void cargarCitas(JTable tableCitas) {
+    public void cargarCitas() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void cargarProductos(JTable tableInventario) {
+    public void cargarProductos() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
