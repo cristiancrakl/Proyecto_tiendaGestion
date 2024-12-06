@@ -5,18 +5,26 @@
 package Interfaz.Citas_CRUD;
 
 import Logica.Citas_CRUD_Logica.AñadirCitas_Logica;
+import Logica.ConexionLOGIC.Conexion;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
 import Interfaz.PanelesPrincipales.PanelAdmin;
 
 /**
  *
  * @author Lenovo
  */
-public class AñadirCitas extends javax.swing.JFrame {
+public class EliminarCitas extends javax.swing.JFrame {
 
     /**
      * Creates new form F_registro
      */
-    public AñadirCitas() {
+    public EliminarCitas() {
         initComponents();
 
     }
@@ -39,17 +47,19 @@ public class AñadirCitas extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         textDia = new javax.swing.JTextField();
         TextHoraInicio = new javax.swing.JTextField();
-        btn_AgregarHorario = new javax.swing.JButton();
+        btn_EliminarHorario = new javax.swing.JButton();
         btn_VolverInicio = new javax.swing.JButton();
         combo_Disponible = new javax.swing.JComboBox<>();
         TextHorafinal = new javax.swing.JTextField();
+        btn_buscarID = new javax.swing.JButton();
+        txt_EliminarID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Dia");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Crear Nuevo Horario");
+        jLabel2.setText("Eliminar Horario");
 
         jLabel3.setText("Hora");
 
@@ -57,10 +67,10 @@ public class AñadirCitas extends javax.swing.JFrame {
 
         jLabel5.setText("Estado");
 
-        btn_AgregarHorario.setText("Agregar Horario");
-        btn_AgregarHorario.addActionListener(new java.awt.event.ActionListener() {
+        btn_EliminarHorario.setText("Eliminar Horario");
+        btn_EliminarHorario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AgregarHorarioActionPerformed(evt);
+                btn_EliminarHorarioActionPerformed(evt);
             }
         });
 
@@ -72,6 +82,15 @@ public class AñadirCitas extends javax.swing.JFrame {
         });
 
         combo_Disponible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible ", "No disponible" }));
+
+        btn_buscarID.setText("Buscar");
+        btn_buscarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarIDActionPerformed(evt);
+            }
+        });
+
+        txt_EliminarID.setText("Buscar id");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,20 +104,25 @@ public class AñadirCitas extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(combo_Disponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textDia, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
-                    .addComponent(TextHoraInicio)
-                    .addComponent(TextHorafinal))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(textDia, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                        .addComponent(TextHoraInicio)
+                        .addComponent(TextHorafinal))
+                    .addComponent(combo_Disponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(254, Short.MAX_VALUE)
+                .addContainerGap(257, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(252, 252, 252))
+                        .addGap(38, 38, 38)
+                        .addComponent(txt_EliminarID, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_buscarID)
+                        .addGap(14, 14, 14))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_AgregarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_EliminarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(268, 268, 268))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btn_VolverInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,7 +132,11 @@ public class AñadirCitas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_buscarID)
+                        .addComponent(txt_EliminarID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -126,7 +154,7 @@ public class AñadirCitas extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(combo_Disponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(btn_AgregarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_EliminarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_VolverInicio)
                 .addGap(22, 22, 22))
@@ -134,6 +162,10 @@ public class AñadirCitas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_buscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_buscarIDActionPerformed
 
     private void btn_VolverInicioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:btn_VolverInicioActionPerformed
         this.dispose();
@@ -143,16 +175,43 @@ public class AñadirCitas extends javax.swing.JFrame {
 
     }
 
-    public void btn_AgregarHorarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_iniciar_SesionActionPerformed
+    private void btn_EliminarHorarioActionPerformed(java.awt.event.ActionEvent evt) {
+        String idEliminar = txt_EliminarID.getText().trim(); // Obtener el ID a eliminar
 
-        String dia = textDia.getText();
-        String horaInicio = TextHoraInicio.getText().trim();
-        String horaFinal = TextHorafinal.getText().trim();
-        String estado = combo_Disponible.getSelectedItem().toString();
+        if (idEliminar.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un ID.");
+            return;
+        }
 
-        AñadirCitas_Logica citas_Logica = new AñadirCitas_Logica();
-        citas_Logica.agregarHorario(dia, horaInicio, horaFinal, estado);
+        eliminarHorario(idEliminar);
+    }
 
+    private void eliminarHorario(String id) {
+        // Conectar a la base de datos
+        Connection connection = Conexion.getInstancia().conectar();
+        if (connection == null) {
+            JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos.");
+            return;
+        }
+
+        String query = "DELETE FROM horarioscitas WHERE id = ?"; // Cambia "id" por el nombre de tu columna
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, id);
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Horario eliminado exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró un horario con ese ID.");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } finally {
+            try {
+                connection.close(); // Cerrar la conexión
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+            }
+        }
     }
 
     // GEN-LAST:event_btn_iniciar_SesionActionPerformed
@@ -175,7 +234,7 @@ public class AñadirCitas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AñadirCitas().setVisible(true);
+                new EliminarCitas().setVisible(true);
             }
         });
 
@@ -184,8 +243,9 @@ public class AñadirCitas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextHoraInicio;
     private javax.swing.JTextField TextHorafinal;
-    private javax.swing.JButton btn_AgregarHorario;
+    private javax.swing.JButton btn_EliminarHorario;
     private javax.swing.JButton btn_VolverInicio;
+    private javax.swing.JButton btn_buscarID;
     private javax.swing.JComboBox<String> combo_Disponible;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -193,5 +253,6 @@ public class AñadirCitas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField textDia;
+    private javax.swing.JTextField txt_EliminarID;
     // End of variables declaration//GEN-END:variables
 }

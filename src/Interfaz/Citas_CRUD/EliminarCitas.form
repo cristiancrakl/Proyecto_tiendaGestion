@@ -32,23 +32,29 @@
                   <Component id="jLabel5" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="combo_Disponible" min="-2" max="-2" attributes="0"/>
-                  <Component id="textDia" pref="422" max="32767" attributes="0"/>
-                  <Component id="TextHoraInicio" max="32767" attributes="0"/>
-                  <Component id="TextHorafinal" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="textDia" pref="422" max="32767" attributes="0"/>
+                      <Component id="TextHoraInicio" max="32767" attributes="0"/>
+                      <Component id="TextHorafinal" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="combo_Disponible" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="254" max="32767" attributes="0"/>
+              <EmptySpace pref="257" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel2" min="-2" pref="189" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="txt_EliminarID" min="-2" pref="113" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btn_buscarID" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btn_AgregarHorario" min="-2" pref="145" max="-2" attributes="0"/>
+                      <Component id="btn_EliminarHorario" min="-2" pref="145" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -63,7 +69,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel2" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="btn_buscarID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_EliminarID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -85,7 +97,7 @@
                   <Component id="combo_Disponible" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="87" max="32767" attributes="0"/>
-              <Component id="btn_AgregarHorario" min="-2" pref="61" max="-2" attributes="0"/>
+              <Component id="btn_EliminarHorario" min="-2" pref="61" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_VolverInicio" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -104,7 +116,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Crear Nuevo Horario"/>
+        <Property name="text" type="java.lang.String" value="Eliminar Horario"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -126,12 +138,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="TextHoraInicio">
     </Component>
-    <Component class="javax.swing.JButton" name="btn_AgregarHorario">
+    <Component class="javax.swing.JButton" name="btn_EliminarHorario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar Horario"/>
+        <Property name="text" type="java.lang.String" value="Eliminar Horario"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_AgregarHorarioActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EliminarHorarioActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_VolverInicio">
@@ -156,6 +168,19 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="TextHorafinal">
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_buscarID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_buscarIDActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txt_EliminarID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar id"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
