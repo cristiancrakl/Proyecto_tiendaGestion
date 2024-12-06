@@ -16,7 +16,7 @@ Este Sistema permite gestinar los clientes, solicitudes de servicios, horarios, 
 
 
 ## Autores
-- Cristian Leonardo Morales Cadena - Persistencia
+- Cristian Leonardo Morales Cadena - Acceso a Datos y Persistencia
 - Carlos Johan Navarro Delgado - Logica del Negocio
 - Andres Felipe Rincon Naranjo - Presentacion
-- Adrian Camilo Ortega Contreras - Acceso a Datos
+- Adrian Camilo Ortega Contreras - Testing y debugger
